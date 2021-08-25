@@ -1,0 +1,14 @@
+{
+  "name": "xlsx",
+  "version": "1.0.0",
+  "description": "test of xlsx0populate",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Taiki Sugawara",
+  "license": "ISC",
+  "dependencies": {
+    "xlsx-populate": "^1.21.0"
+  }
+}
