@@ -13,10 +13,11 @@ if (!filePath) {
 if (!(process.argv[3] && process.argv[4])) {
 	console.error("列番号を入力してください");
 }
-itemNumberColumnId = process.argv[3];
-statusColumnId = process.argv[4];
+var itemNumberColumnId = process.argv[3];
+var statusColumnId = process.argv[4];
 
-startSheet = 0;
+var startSheet = 0;
+var endSheet;
 if (process.argv[5]) {
 	startSheet = process.argv[5];
 	if (process.argv[6]) {
@@ -31,7 +32,10 @@ const stringsDone = ["完了", "◯", "OK", "ok", "Ok"];
 // Load an existing workbook
 XlsxPopulate.fromFileAsync(filePath).then((workbook) => {
 	const sheets = workbook.sheets();
-	for (let sheetNum = startSheet; sheetNum < sheets.length; sheetNum++) {
+    if(!endSheet){
+        endSheet = sheets.length
+    }
+	for (let sheetNum = startSheet; sheetNum < endSheet; sheetNum++) {
 		const sheet = sheets[sheetNum];
 		const itemNumberColumn = sheet.column(itemNumberColumnId);
 		const statusColumn = sheet.column(statusColumnId);
@@ -64,7 +68,11 @@ XlsxPopulate.fromFileAsync(filePath).then((workbook) => {
 		countItemObj.sheetName = sheet.name();
 		countItemObj.countItemNum = countItemNum;
 		countItemObj.countDoneNum = countDoneNum;
-		countItems.push = countItemObj;
+		countItems.push(countItemObj);
 	}
+
+}).then(()=>{
 	console.log(countItems);
+
+
 });
