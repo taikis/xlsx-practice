@@ -4,7 +4,7 @@
   "description": "test of xlsx0populate",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js ./Book1.xlsx"
   },
   "author": "Taiki Sugawara",
   "license": "ISC",
